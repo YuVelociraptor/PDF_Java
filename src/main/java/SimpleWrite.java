@@ -1,6 +1,8 @@
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType0Font;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +24,9 @@ public class SimpleWrite {
         System.out.println(fontPath);
 
         try (PDDocument document = new PDDocument();) {
+
+            // PDFにFont設定
+            PDFont font = PDType0Font.load(document, new File(fontPath));
 
             PDPage page = new PDPage(PDRectangle.A4);
             page.setRotation(90);
