@@ -18,6 +18,9 @@ public class SimpleWrite {
         String outDir = System.getenv("PDF_OUT_DIR");
         File outFile = new File(outDir + "/out_" + now + ".pdf");
 
+        String fontPath = System.getenv("PDF_FONT");
+        System.out.println(fontPath);
+
         try (PDDocument document = new PDDocument();) {
 
             PDPage page = new PDPage(PDRectangle.A4);
