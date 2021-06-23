@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 
 public class SimpleWrite {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         String now = LocalDateTime.now().format(format);
@@ -21,11 +21,9 @@ public class SimpleWrite {
         File outFile = new File(outDir + "/out_" + now + ".pdf");
 
         String fontPath = System.getenv("PDF_FONT");
-        System.out.println(fontPath);
 
-        try (PDDocument document = new PDDocument();) {
+        try (PDDocument document = new PDDocument()) {
 
-            // PDFにFont設定
             PDFont font = PDType0Font.load(document, new File(fontPath));
 
             PDPage page = new PDPage(PDRectangle.A4);
@@ -33,6 +31,9 @@ public class SimpleWrite {
             document.addPage(page);
 
             document.save(outFile);
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }
