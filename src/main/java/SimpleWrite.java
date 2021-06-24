@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 
 public class SimpleWrite {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         String now = LocalDateTime.now().format(format);
@@ -32,8 +32,6 @@ public class SimpleWrite {
 
             document.save(outFile);
 
-        }catch (Exception e){
-            e.printStackTrace();
         }
     }
 }
