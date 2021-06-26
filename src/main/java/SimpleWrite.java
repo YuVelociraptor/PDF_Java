@@ -4,6 +4,7 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType0Font;
+import org.apache.pdfbox.util.Matrix;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,6 +32,11 @@ public class SimpleWrite {
             PDPage page = new PDPage(PDRectangle.A4);
             page.setRotation(90);
             document.addPage(page);
+
+
+            try (PDPageContentStream content = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, false)) {
+                content.transform(new Matrix(0, 1, -1, 0, page.getMediaBox().getWidth(), 0));
+            }
 
             try (PDPageContentStream content = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, false)) {
 
