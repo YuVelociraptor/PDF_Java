@@ -1,5 +1,6 @@
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType0Font;
@@ -31,8 +32,16 @@ public class SimpleWrite {
             page.setRotation(90);
             document.addPage(page);
 
-            document.save(outFile);
+            try (PDPageContentStream content = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, false)) {
 
+                content.beginText();
+                content.setFont(font, 50);
+                content.newLineAtOffset(100, 200);
+                content.showText("こんにちは。世界");
+                content.endText();
+            }
+
+            document.save(outFile);
         }
     }
 }
