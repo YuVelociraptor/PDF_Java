@@ -1,0 +1,15 @@
+services:
+  app:
+    container_name: java-pdf-work
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    working_dir: /app
+    environment:
+      PDF_OUT_DIR: ${PDF_OUT_DIR}
+      PDF_MERGE_INPUT_DIR: ${PDF_MERGE_INPUT_DIR}
+      PDF_SPLIT_INPUT_DIR: ${PDF_SPLIT_INPUT_DIR}
+    volumes:
+      - ./src:/app/src
+    tty: true
+    stdin_open: true
