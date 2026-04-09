@@ -42,3 +42,6 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 /.idea/
+
+# Local environment overrides
+.env
