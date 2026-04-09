@@ -28,7 +28,7 @@ tasks.withType(JavaCompile).configureEach {
 
 tasks {
     shadowJar {
-        archiveBaseName.set("PDF_Java")
+        archiveBaseName.set("pdf_tools")
         archiveClassifier.set("")
         archiveVersion.set("")
     }
