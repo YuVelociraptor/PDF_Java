@@ -15,7 +15,7 @@ java -cp /app/build/libs/pdf_tools.jar MergePDF
 ``` shell
 split
 ```
-This command i alias of
+This command is alias of
 ``` shell
 java -cp /app/build/libs/pdf_tools.jar SplitPDF
 ```
