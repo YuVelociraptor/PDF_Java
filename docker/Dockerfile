@@ -11,6 +11,8 @@ RUN if command -v dnf >/dev/null 2>&1; then \
       exit 1; \
     fi
 
+RUN printf "%s\n" "alias merge='java -cp /app/build/libs/pdf_tools.jar MergePDF'" >> /root/.bashrc
+
 COPY . /app
 
 CMD ["bash"]
