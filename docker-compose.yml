@@ -1,0 +1,24 @@
+services:
+  app:
+    container_name: java-pdf-work
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    working_dir: /app
+    command: bash -lc "./gradlew shadowJar && exec bash"
+    environment:
+      PDF_OUT_DIR: /app/output
+      PDF_MERGE_INPUT_DIR: /app/input/merge
+      PDF_SPLIT_INPUT_DIR: /app/input/split
+    volumes:
+      - ./src:/app/src
+      - ./build.gradle:/app/build.gradle
+      - ./settings.gradle:/app/settings.gradle
+      - ./gradlew:/app/gradlew
+      - ./gradle:/app/gradle
+      - ./build:/app/build
+      - ${PDF_OUT_DIR}:/app/output
+      - ${PDF_MERGE_INPUT_DIR}:/app/input/merge
+      - ${PDF_SPLIT_INPUT_DIR}:/app/input/split
+    tty: true
+    stdin_open: true
